@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LocationAddDialogComponent } from './location-add-dialog.component';
-// import {AppMaterialModule} from "app/app-material/app-material.module";
+import { AppMaterialModule } from '../../../app-material/app-material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 describe('LocationAddDialogComponent', () => {
   beforeEach(
@@ -14,7 +16,7 @@ describe('LocationAddDialogComponent', () => {
     })
   );
 
-  fit(
+  it(
     'should create the component',
     async(() => {
       const fixture = TestBed.createComponent(LocationAddDialogComponent);

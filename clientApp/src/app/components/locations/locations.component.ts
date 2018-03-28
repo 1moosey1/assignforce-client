@@ -5,6 +5,7 @@ import { Locations } from '../../model/locations';
 import { Building } from '../../model/building';
 import { Room } from '../../model/room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
+import { LocationEditDialogComponent } from './edit-dialog/location-edit-dialog.component';
 
 @Component({
   selector: 'app-location-delete-location-dialog',
@@ -36,20 +37,20 @@ export class LocationAddLocationDialogComponent {
   }
 }
 
-@Component({
-  selector: 'app-location-edit-location-dialog',
-  templateUrl: './location-edit-location-dialog.component.html'
-})
-export class LocationEditLocationDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditLocationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+// @Component({
+//   selector: 'app-location-edit-location-dialog',
+//   templateUrl: './location-edit-location-dialog.component.html'
+// })
+// export class LocationEditLocationDialogComponent {
+//   constructor(
+//     public dialogRef: MatDialogRef<LocationEditLocationDialogComponent>,
+//     @Inject(MAT_DIALOG_DATA) public data: any
+//   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 
 // @Component({
 //   selector: 'app-location-add-building-dialog',
@@ -81,20 +82,20 @@ export class LocationDeleteBuildingDialogComponent {
   }
 }
 
-@Component({
-  selector: 'app-location-edit-building-dialog',
-  templateUrl: './location-edit-building-dialog.component.html'
-})
-export class LocationEditBuildingDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditBuildingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+// @Component({
+//   selector: 'app-location-edit-building-dialog',
+//   templateUrl: './location-edit-building-dialog.component.html'
+// })
+// export class LocationEditBuildingDialogComponent {
+//   constructor(
+//     public dialogRef: MatDialogRef<LocationEditBuildingDialogComponent>,
+//     @Inject(MAT_DIALOG_DATA) public data: any
+//   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 
 @Component({
   selector: 'app-location-add-room-dialog',
@@ -126,20 +127,20 @@ export class LocationDeleteRoomDialogComponent {
   }
 }
 
-@Component({
-  selector: 'app-location-edit-room-dialog',
-  templateUrl: './location-edit-room-dialog.component.html'
-})
-export class LocationEditRoomDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+// @Component({
+//   selector: 'app-location-edit-room-dialog',
+//   templateUrl: './location-edit-room-dialog.component.html'
+// })
+// export class LocationEditRoomDialogComponent {
+//   constructor(
+//     public dialogRef: MatDialogRef<LocationEditRoomDialogComponent>,
+//     @Inject(MAT_DIALOG_DATA) public data: any
+//   ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+// }
 
 @Component({
   selector: 'app-locations',
@@ -286,9 +287,10 @@ export class LocationsComponent implements OnInit {
   }
   openEditLocationDialog(evt, location: Locations): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationEditLocationDialogComponent, {
+    const dialogRef = this.dialog.open(LocationEditDialogComponent, {
       width: '450px',
       data: {
+        editType: 'location',
         location: location
       }
     });
@@ -339,9 +341,10 @@ export class LocationsComponent implements OnInit {
   }
   openEditBuildingDialog(evt, location: Locations, building: Building): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationEditBuildingDialogComponent, {
+    const dialogRef = this.dialog.open(LocationEditDialogComponent, {
       width: '450px',
       data: {
+        editType: 'building',
         building: building
       }
     });
@@ -390,9 +393,10 @@ export class LocationsComponent implements OnInit {
   }
   openEditRoomDialog(evt, location: Locations, room: Room): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationEditRoomDialogComponent, {
+    const dialogRef = this.dialog.open(LocationEditDialogComponent, {
       width: '450px',
       data: {
+        editType: 'room',
         room: room
       }
     });

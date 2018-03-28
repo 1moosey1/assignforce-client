@@ -11,19 +11,19 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { BatchesComponent } from './components/batches/batches.component';
 import {
-
   // LocationAddBuildingDialogComponent,
-  LocationAddLocationDialogComponent,
-  LocationAddRoomDialogComponent,
-  LocationDeleteBuildingDialogComponent,
-  LocationDeleteLocationDialogComponent,
-  LocationDeleteRoomDialogComponent,
+  // LocationAddLocationDialogComponent,
+  // LocationAddRoomDialogComponent,
+  // LocationDeleteBuildingDialogComponent,
+  // LocationDeleteLocationDialogComponent,
+  // LocationDeleteRoomDialogComponent,
   LocationEditBuildingDialogComponent,
   LocationEditLocationDialogComponent,
   LocationEditRoomDialogComponent,
   LocationsComponent
 } from './components/locations/locations.component';
 import { LocationAddDialogComponent } from './components/locations/add-dialog/location-add-dialog.component';
+import { LocationDeleteDialogComponent } from './components/locations/delete-dialog/location-delete-dialog.component';
 import { CurriculaComponent } from './components/curricula/curricula.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -53,14 +53,15 @@ import { AppMaterialModule } from './app-material/app-material.module';
     ProfileComponent,
     ReportsComponent,
     SettingsComponent,
-    LocationAddLocationDialogComponent,
-    LocationDeleteLocationDialogComponent,
+    // LocationAddLocationDialogComponent,
+    // LocationDeleteLocationDialogComponent,
     LocationEditLocationDialogComponent,
-    LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
-    LocationDeleteBuildingDialogComponent,
+    LocationAddDialogComponent,
+    LocationDeleteDialogComponent, // LocationAddBuildingDialogComponent,
+    // LocationDeleteBuildingDialogComponent,
     LocationEditBuildingDialogComponent,
-    LocationAddRoomDialogComponent,
-    LocationDeleteRoomDialogComponent,
+    // LocationAddRoomDialogComponent,
+    // LocationDeleteRoomDialogComponent,
     LocationEditRoomDialogComponent,
     LoginComponent
   ],
@@ -81,15 +82,16 @@ import { AppMaterialModule } from './app-material/app-material.module';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    LocationAddLocationDialogComponent,
-    LocationDeleteLocationDialogComponent,
+    // LocationAddLocationDialogComponent,
+    // LocationDeleteLocationDialogComponent,
     LocationEditLocationDialogComponent,
     LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
-    LocationDeleteBuildingDialogComponent,
+    // LocationDeleteBuildingDialogComponent,
     LocationEditBuildingDialogComponent,
-    LocationAddRoomDialogComponent,
-    LocationDeleteRoomDialogComponent,
-    LocationEditRoomDialogComponent
+    // LocationAddRoomDialogComponent,
+    // LocationDeleteRoomDialogComponent,
+    LocationEditRoomDialogComponent,
+    LocationDeleteDialogComponent
   ]
 })
 export class AppModule {}

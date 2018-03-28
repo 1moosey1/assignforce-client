@@ -5,21 +5,7 @@ import { Locations } from '../../model/locations';
 import { Building } from '../../model/building';
 import { Room } from '../../model/room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
-
-@Component({
-  selector: 'app-location-delete-location-dialog',
-  templateUrl: './location-delete-location-dialog.component.html'
-})
-export class LocationDeleteLocationDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteLocationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
+import { LocationDeleteDialogComponent } from './delete-dialog/location-delete-dialog.component';
 
 @Component({
   selector: 'app-location-add-location-dialog',
@@ -51,36 +37,6 @@ export class LocationEditLocationDialogComponent {
   }
 }
 
-// @Component({
-//   selector: 'app-location-add-building-dialog',
-//   templateUrl: './location-add-building-dialog.component.html'
-// })
-// export class LocationAddBuildingDialogComponent {
-//   constructor(
-//     public dialogRef: MatDialogRef<LocationAddBuildingDialogComponent>,
-//     @Inject(MAT_DIALOG_DATA) public data: any
-//   ) {}
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-// }
-
-@Component({
-  selector: 'app-location-delete-building-dialog',
-  templateUrl: './location-delete-building-dialog.component.html'
-})
-export class LocationDeleteBuildingDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteBuildingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
 @Component({
   selector: 'app-location-edit-building-dialog',
   templateUrl: './location-edit-building-dialog.component.html'
@@ -103,21 +59,6 @@ export class LocationEditBuildingDialogComponent {
 export class LocationAddRoomDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<LocationAddRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-delete-room-dialog',
-  templateUrl: './location-delete-room-dialog.component.html'
-})
-export class LocationDeleteRoomDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteRoomDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -271,10 +212,12 @@ export class LocationsComponent implements OnInit {
   }
   openDeleteLocationDialog(evt, location: Locations): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationDeleteLocationDialogComponent, {
+    const dialogRef = this.dialog.open(LocationDeleteDialogComponent, {
       width: '250px',
       data: {
-        location: location
+        deleteType: 'location',
+        location: location,
+        name: location.name
       }
     });
 
@@ -323,10 +266,12 @@ export class LocationsComponent implements OnInit {
   }
   openDeleteBuildingDialog(evt, location: Locations, building: Building): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationDeleteBuildingDialogComponent, {
+    const dialogRef = this.dialog.open(LocationDeleteDialogComponent, {
       width: '250px',
       data: {
-        building: building
+        deleteType: 'building',
+        building: building,
+        name: building.name
       }
     });
 
@@ -374,9 +319,10 @@ export class LocationsComponent implements OnInit {
   }
   openDeleteRoomDialog(evt, location: Locations, building: Building, room: Room): void {
     evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationDeleteRoomDialogComponent, {
+    const dialogRef = this.dialog.open(LocationDeleteDialogComponent, {
       width: '250px',
       data: {
+        deleteType: 'room',
         room: room
       }
     });

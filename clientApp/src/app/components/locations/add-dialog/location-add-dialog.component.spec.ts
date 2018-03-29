@@ -19,10 +19,13 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 class NoopComponent {}
 
-const TEST_DIRECTIVES = [LocationAddDialogComponent, NoopComponent];
+const TEST_DIRECTIVES = [
+  LocationAddDialogComponent, 
+  NoopComponent
+];
 
 @NgModule({
-  imports: [MatDialogModule, NoopAnimationsModule],
+  imports: [MatDialogModule, NoopAnimationsModule, FormsModule, AppMaterialModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
   entryComponents: [LocationAddDialogComponent]
@@ -56,47 +59,49 @@ describe('LocationAddDialog', () => {
 
   it("should have title as 'Location'", () => {
     const config = {
-      width: '450px',
       data: {
         addType: 'location',
-        location: null
+        location: {}
       }
     };
     dialog.open(LocationAddDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
-    const title = overlayContainerElement.querySelector('#title');
-    expect(title.textContent).toBe('Add Location');
+    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-0');
+    expect(h2.textContent).toBe('Add Location');
   });
 
   it("should have title as 'Building'", () => {
     const config = {
-      width: '450px',
       data: {
         addType: 'building',
-        building: null
+        building: {}
       }
     };
     dialog.open(LocationAddDialogComponent, config);
 
-    const title = overlayContainerElement.querySelector('#title');
-    expect(title.textContent).toBe('Add Bulding');
+    noop.detectChanges(); // Updates the dialog in the overlay
+
+    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-1');
+    expect(h2.textContent).toBe('Add Building');
   });
 
   it("should have title as 'Room'", () => {
     const config = {
-      width: '450px',
       data: {
         addType: 'room',
-        location: null
+        room: {}
       }
     };
     dialog.open(LocationAddDialogComponent, config);
 
-    const title = overlayContainerElement.querySelector('#title');
-    expect(title.textContent).toBe('Add Room');
+    noop.detectChanges(); // Updates the dialog in the overlay
+
+    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-2');
+    expect(h2.textContent).toBe('Add Room');
   });
+
 });
 
 // describe('LocationAddDialogComponent', () => {

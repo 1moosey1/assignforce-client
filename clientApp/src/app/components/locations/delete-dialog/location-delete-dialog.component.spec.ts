@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MatDialog } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { LocationEditDialogComponent } from './location-edit-dialog.component';
+import { LocationDeleteDialogComponent } from './location-delete-dialog.component';
 import { AppMaterialModule } from '../../../app-material/app-material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +20,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 class NoopComponent {}
 
 const TEST_DIRECTIVES = [
-    LocationEditDialogComponent, 
+    LocationDeleteDialogComponent, 
     NoopComponent
 ];
 
@@ -28,11 +28,11 @@ const TEST_DIRECTIVES = [
   imports: [MatDialogModule, NoopAnimationsModule, FormsModule, AppMaterialModule],
   exports: TEST_DIRECTIVES,
   declarations: TEST_DIRECTIVES,
-  entryComponents: [LocationEditDialogComponent]
+  entryComponents: [LocationDeleteDialogComponent]
 })
-class LocationEditDialogTestModule {}
+class LocationDeleteDialogTestModule {}
 
-describe('LocationEditDialog', () => {
+describe('LocationDeleteDialog', () => {
   let dialog: MatDialog;
   let overlayContainerElement: HTMLElement;
 
@@ -40,7 +40,7 @@ describe('LocationEditDialog', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [LocationEditDialogTestModule],
+      imports: [LocationDeleteDialogTestModule],
       providers: [
         {
           provide: OverlayContainer,
@@ -60,11 +60,11 @@ describe('LocationEditDialog', () => {
   it("should have correct content for 'Location'", () => {
     const config = {
         data: {
-          editType: 'location',
-          location: {}
+          deleteType: 'location',
+          location: {name: 'locationName'}
         }
       };
-    dialog.open(LocationEditDialogComponent, config);
+    dialog.open(LocationDeleteDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
@@ -72,7 +72,7 @@ describe('LocationEditDialog', () => {
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
     
-    expect(h2.textContent).toBe('Edit Location');
+    expect(h2.textContent).toBe('Delete locationName?');
     // expect(h2).toBeTruthy();
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
@@ -81,11 +81,11 @@ describe('LocationEditDialog', () => {
   it("should have correct content for 'Building'", () => {
     const config = {
         data: {
-            editType: 'building',
-            building: {}
+            deleteType: 'building',
+            building: {name: 'buildingName'}
           }
         };
-    dialog.open(LocationEditDialogComponent, config);
+    dialog.open(LocationDeleteDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
@@ -93,7 +93,7 @@ describe('LocationEditDialog', () => {
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
 
-    expect(h2.textContent).toBe('Edit Building');
+    expect(h2.textContent).toBe('Delete buildingName?');
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
   });
@@ -101,11 +101,11 @@ describe('LocationEditDialog', () => {
   it("should have correct content for 'Room'", () => {
     const config = {
         data: {
-            editType: 'room',
-            room: {}
+            deleteType: 'room',
+            room: {name: 'roomName'}
         }
     };
-    dialog.open(LocationEditDialogComponent, config);
+    dialog.open(LocationDeleteDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
@@ -113,7 +113,7 @@ describe('LocationEditDialog', () => {
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
 
-    expect(h2.textContent).toBe('Edit Room');
+    expect(h2.textContent).toBe('Delete roomName?');
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
   });

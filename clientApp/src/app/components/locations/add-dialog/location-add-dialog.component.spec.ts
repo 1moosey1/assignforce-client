@@ -30,7 +30,7 @@ const TEST_DIRECTIVES = [
   declarations: TEST_DIRECTIVES,
   entryComponents: [LocationAddDialogComponent]
 })
-class DialogTestModule {}
+class LocationAddDialogTestModule {}
 
 describe('LocationAddDialog', () => {
   let dialog: MatDialog;
@@ -40,7 +40,7 @@ describe('LocationAddDialog', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DialogTestModule],
+      imports: [LocationAddDialogTestModule],
       providers: [
         {
           provide: OverlayContainer,
@@ -57,7 +57,7 @@ describe('LocationAddDialog', () => {
     noop = TestBed.createComponent(NoopComponent);
   });
 
-  it("should have title as 'Location'", () => {
+  it("should have correct content for 'Location'", () => {
     const config = {
       data: {
         addType: 'location',
@@ -68,11 +68,22 @@ describe('LocationAddDialog', () => {
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
-    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-0');
+    const h2 = overlayContainerElement.querySelector('#title');
+    const nameInput = overlayContainerElement.querySelector('#name-input');
+    const cityInput = overlayContainerElement.querySelector('#city-input');
+    const stateInput = overlayContainerElement.querySelector('#state-input');
+    const okButton = overlayContainerElement.querySelector('#ok-button');
+    const cancelButton = overlayContainerElement.querySelector('#cancel-button');
+    
     expect(h2.textContent).toBe('Add Location');
+    expect(nameInput).toBeTruthy();
+    expect(cityInput).toBeTruthy();
+    expect(stateInput).toBeTruthy();
+    expect(okButton).toBeTruthy();
+    expect(cancelButton).toBeTruthy();
   });
 
-  it("should have title as 'Building'", () => {
+  it("should have correct content for 'Building'", () => {
     const config = {
       data: {
         addType: 'building',
@@ -83,11 +94,18 @@ describe('LocationAddDialog', () => {
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
-    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-1');
+    const h2 = overlayContainerElement.querySelector('#title');
+    const nameInput = overlayContainerElement.querySelector('#name-input');
+    const okButton = overlayContainerElement.querySelector('#ok-button');
+    const cancelButton = overlayContainerElement.querySelector('#cancel-button');
+
     expect(h2.textContent).toBe('Add Building');
+    expect(nameInput).toBeTruthy();
+    expect(okButton).toBeTruthy();
+    expect(cancelButton).toBeTruthy();
   });
 
-  it("should have title as 'Room'", () => {
+  it("should have correct content for 'Room'", () => {
     const config = {
       data: {
         addType: 'room',
@@ -98,72 +116,15 @@ describe('LocationAddDialog', () => {
 
     noop.detectChanges(); // Updates the dialog in the overlay
 
-    const h2 = overlayContainerElement.querySelector('#mat-dialog-title-2');
+    const h2 = overlayContainerElement.querySelector('#title');
+    const nameInput = overlayContainerElement.querySelector('#name-input');
+    const okButton = overlayContainerElement.querySelector('#ok-button');
+    const cancelButton = overlayContainerElement.querySelector('#cancel-button');
+
     expect(h2.textContent).toBe('Add Room');
+    expect(nameInput).toBeTruthy();
+    expect(okButton).toBeTruthy();
+    expect(cancelButton).toBeTruthy();
   });
 
 });
-
-// describe('LocationAddDialogComponent', () => {
-//   let dialog: MatDialog;
-
-//   beforeEach(
-//     async(() => {
-//       TestBed.configureTestingModule({
-//         imports: [AppMaterialModule, FormsModule, BrowserAnimationsModule],
-//         declarations: [LocationAddDialogComponent],
-//         providers: [LocationAddDialogComponent],
-//       }).compileComponents();
-//     })
-//   );
-
-//   beforeEach(inject([MatDialog], (d: MatDialog) => {
-//     dialog = d;
-//   }));
-
-//   fit(
-//     'should create the component',
-//     async(() => {
-
-//       let dialogRef = dialog.open(LocationAddDialogComponent);
-
-//       const fixture = TestBed.createComponent(LocationAddDialogComponent);
-//       const component = fixture.debugElement.componentInstance;
-//       expect(component).toBeTruthy();
-//     })
-//     // async(() => {
-//     //   const fixture = TestBed.createComponent(LocationAddDialogComponent);
-//     //   const component = fixture.debugElement.componentInstance;
-//     //   expect(component).toBeTruthy();
-
-//     // })
-//   );
-
-//   it(
-//     `should have as title 'Add location'`,
-//     async(() => {
-//       const fixture = TestBed.createComponent(LocationAddDialogComponent);
-//       fixture.detectChanges();
-//       const el = fixture.nativeElement.querySelector('.mat-dialog-title');
-//       expect(el.textContent).toEqual('Add location');
-//     })
-//   );
-
-//   //   beforeEach(async(() => {
-//   //     TestBed.configureTestingModule({
-//   //       imports: [ AppMaterialModule, HttpClientTestingModule, BrowserAnimationsModule ],
-//   //       declarations: [ Loca ]
-//   //     })
-//   //       .compileComponents();
-//   //   }));
-
-//   //   beforeEach(() => {
-//   //     fixture = TestBed.createComponent(LocationsComponent);
-//   //     component = fixture.componentInstance;
-//   //     fixture.detectChanges();
-//   //   });
-
-//   //   it('should create', () => {
-//   //     expect(component).toBeTruthy();
-//   //   });
-// });

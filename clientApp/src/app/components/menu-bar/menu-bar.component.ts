@@ -2,6 +2,7 @@ import { AfterContentInit, Component, ContentChildren, OnInit, QueryList, ViewEn
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { MatTab } from '@angular/material';
+import { UrlService } from '../../services/url/url.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -10,28 +11,26 @@ import { MatTab } from '@angular/material';
   encapsulation: ViewEncapsulation.None
 })
 export class MenuBarComponent implements OnInit {
-
   selectedTab = 0;
 
   tabs = ['overview', 'batches', 'locations', 'curricula', 'trainers', 'profile', 'reports', 'settings', 'logout'];
 
-  constructor(private router: Router,
-    private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private urlService: UrlService) {}
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log("current url", event.url.split('/'));
-        this.selectedTab = this.tabs.indexOf(event.url.split('/')[1]);
-      }
-    });
+    // this.router.navigate([this.urlService.getOverviewUrl])
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     console.log("current url", event.url.split('/'));
+    //     this.selectedTab = this.tabs.indexOf(event.url.split('/')[1]);
+    //   }
+    // });
   }
-
 
   selectTab(evt) {
     //localStorage.setItem('active', evt.index);
 
-    this.router.navigate([(this.tabs[evt.index])]);
+    this.router.navigate([this.tabs[evt.index]]);
     /*
           switch (evt.index) {
           case 0: this.toOverview();
@@ -64,7 +63,7 @@ export class MenuBarComponent implements OnInit {
     */
   }
 
-	/*
+  /*
     toOverview() {
     this.router.navigate([('overview')]);
   }

@@ -36,7 +36,9 @@ import { UrlService } from './services/url/url.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { ApiService } from './services/api/api.service';
 import { AppMaterialModule } from './app-material/app-material.module';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
     S3CredentialService,
     HttpClient,
     UrlService,
+    ApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,

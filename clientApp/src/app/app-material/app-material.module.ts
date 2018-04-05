@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule,
@@ -23,9 +23,11 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
-} from "@angular/material";
-import { ReactiveFormsModule } from "@angular/forms";
+  MatTooltipModule,
+  MatGridList,
+  MatGridListModule
+} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -90,9 +92,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   declarations: []
 })
-export class AppMaterialModule {
-}
+export class AppMaterialModule {}

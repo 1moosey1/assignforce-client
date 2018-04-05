@@ -1,9 +1,16 @@
-<div style="padding-top: 1%; padding-left: 1%">
-  <img src="../assets/revature_logo_250.png" >
+<!-- <mat-grid-list cols="2">
+        <mat-grid-tile><img id="t" src="../assets/revature_logo_250.png"></mat-grid-tile>
+        <mat-grid-tile><button mat-fab>Logout</button></mat-grid-tile>
+   
+    
+</mat-grid-list> -->
+<div style="display:flex; justify-content:space-between; align-items:center">
+        <img id="t" src="../assets/revature_logo_250.png">
+        <button mat-fab (click)="logout()"><strong>Logout</strong></button>
 </div>
-<div class="container col-md-9 col-md-offset-3 " >
-  <div >
-      <app-menu-bar></app-menu-bar>
-    </div>
-</div>
+<mat-tab-group  (selectChange)="selectTab($event)" [(selectedIndex)]="selectedTab" >
+    <mat-tab *ngFor="let d of tabs" label={{d}} >
+    </mat-tab>
+</mat-tab-group>
+
 <router-outlet></router-outlet>

@@ -1,5 +1,7 @@
 .mat-tab-label {
+  /* width: 5%; */
   min-width: 0.9vw !important;
+  /* margin-top: 2em; */
   background-color: transparent;
   color: black;
 }

@@ -9,53 +9,54 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
+import { UrlService } from './services/url/url.service';
 
 const appRoutes: Routes = [
   {
-    path: '',
+    path: new UrlService().getLoginUrl(),
     component: LoginComponent,
     pathMatch: 'full'
   },
   {
-    path: 'overview',
+    path: new UrlService().getOverviewUrl(),
     component: OverviewComponent
   },
   {
-    path: 'batches',
+    path: new UrlService().getBatchesUrl(),
     component: BatchesComponent
   },
   {
-    path: 'locations',
+    path: new UrlService().getLocationsUrl(),
     component: LocationsComponent
   },
   {
-    path: 'curricula',
+    path: new UrlService().getCurriculaUrl(),
     component: CurriculaComponent
   },
   {
-    path: 'trainers',
+    path: new UrlService().getTrainersUrl(),
     component: TrainersComponent
   },
   {
-    path: 'profile',
+    path: new UrlService().getProfileUrl(),
     component: ProfileComponent
   },
   {
-    path: 'reports',
+    path: new UrlService().getReportsUrl(),
     component: ReportsComponent
   },
   {
-    path: 'settings',
+    path: new UrlService().getSettingsUrl(),
     component: SettingsComponent
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes),
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
 })
-export class AppRouting { }
+export class AppRouting {
+  stuff: {}[] = [];
+  data;
+  constructor(public urlService: UrlService) {}
+}

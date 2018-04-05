@@ -1,1 +1,27 @@
+#t {
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-bottom: 1em;
+}
 
+.mat-fab {
+  background-color: #f4511e;
+}
+.mat-tab-group {
+  max-width: none !important;
+  /* width: 5%; */
+  min-width: 0.9vw !important;
+  /* margin-top: 2em; */
+  background-color: transparent;
+  color: black;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label-active {
+  outline-color: orangered;
+  color: orangered;
+}
+
+.mat-ink-bar {
+  background-color: orangered !important;
+}

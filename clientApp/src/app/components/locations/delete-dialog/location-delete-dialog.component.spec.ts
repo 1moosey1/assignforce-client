@@ -7,7 +7,7 @@ import { MatDialogModule, MatDialog } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { LocationDeleteDialogComponent } from './location-delete-dialog.component';
-import { AppMaterialModule } from '../../../app-material/app-material.module';
+import { AppMaterialModule } from '../../../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -19,10 +19,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 class NoopComponent {}
 
-const TEST_DIRECTIVES = [
-    LocationDeleteDialogComponent, 
-    NoopComponent
-];
+const TEST_DIRECTIVES = [LocationDeleteDialogComponent, NoopComponent];
 
 @NgModule({
   imports: [MatDialogModule, NoopAnimationsModule, FormsModule, AppMaterialModule],
@@ -59,11 +56,11 @@ describe('LocationDeleteDialog', () => {
 
   it("should have correct content for 'Location'", () => {
     const config = {
-        data: {
-          deleteType: 'location',
-          location: {name: 'locationName'}
-        }
-      };
+      data: {
+        deleteType: 'location',
+        location: { name: 'locationName' }
+      }
+    };
     dialog.open(LocationDeleteDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
@@ -71,7 +68,7 @@ describe('LocationDeleteDialog', () => {
     const h2 = overlayContainerElement.querySelector('#title');
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
-    
+
     expect(h2.textContent).toBe('Delete locationName?');
     // expect(h2).toBeTruthy();
     expect(okButton).toBeTruthy();
@@ -80,11 +77,11 @@ describe('LocationDeleteDialog', () => {
 
   it("should have correct content for 'Building'", () => {
     const config = {
-        data: {
-            deleteType: 'building',
-            building: {name: 'buildingName'}
-          }
-        };
+      data: {
+        deleteType: 'building',
+        building: { name: 'buildingName' }
+      }
+    };
     dialog.open(LocationDeleteDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
@@ -100,10 +97,10 @@ describe('LocationDeleteDialog', () => {
 
   it("should have correct content for 'Room'", () => {
     const config = {
-        data: {
-            deleteType: 'room',
-            room: {name: 'roomName'}
-        }
+      data: {
+        deleteType: 'room',
+        room: { name: 'roomName' }
+      }
     };
     dialog.open(LocationDeleteDialogComponent, config);
 
@@ -117,5 +114,4 @@ describe('LocationDeleteDialog', () => {
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
   });
-
 });

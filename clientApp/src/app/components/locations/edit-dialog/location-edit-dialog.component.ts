@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-location-edit-dialog',
   templateUrl: './location-edit-dialog.component.html'
 })
-export class LocationEditDialogComponent {
+export class LocationEditDialogComponent implements OnInit {
   editType: string;
   typeContent;
 

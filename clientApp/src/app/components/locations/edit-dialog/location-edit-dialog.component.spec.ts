@@ -7,7 +7,7 @@ import { MatDialogModule, MatDialog } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { LocationEditDialogComponent } from './location-edit-dialog.component';
-import { AppMaterialModule } from '../../../app-material/app-material.module';
+import { AppMaterialModule } from '../../../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -19,10 +19,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 class NoopComponent {}
 
-const TEST_DIRECTIVES = [
-    LocationEditDialogComponent, 
-    NoopComponent
-];
+const TEST_DIRECTIVES = [LocationEditDialogComponent, NoopComponent];
 
 @NgModule({
   imports: [MatDialogModule, NoopAnimationsModule, FormsModule, AppMaterialModule],
@@ -59,11 +56,11 @@ describe('LocationEditDialog', () => {
 
   it("should have correct content for 'Location'", () => {
     const config = {
-        data: {
-          editType: 'location',
-          location: {}
-        }
-      };
+      data: {
+        editType: 'location',
+        location: {}
+      }
+    };
     dialog.open(LocationEditDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
@@ -71,7 +68,7 @@ describe('LocationEditDialog', () => {
     const h2 = overlayContainerElement.querySelector('#title');
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
-    
+
     expect(h2.textContent).toBe('Edit Location');
     // expect(h2).toBeTruthy();
     expect(okButton).toBeTruthy();
@@ -80,11 +77,11 @@ describe('LocationEditDialog', () => {
 
   it("should have correct content for 'Building'", () => {
     const config = {
-        data: {
-            editType: 'building',
-            building: {}
-          }
-        };
+      data: {
+        editType: 'building',
+        building: {}
+      }
+    };
     dialog.open(LocationEditDialogComponent, config);
 
     noop.detectChanges(); // Updates the dialog in the overlay
@@ -100,10 +97,10 @@ describe('LocationEditDialog', () => {
 
   it("should have correct content for 'Room'", () => {
     const config = {
-        data: {
-            editType: 'room',
-            room: {}
-        }
+      data: {
+        editType: 'room',
+        room: {}
+      }
     };
     dialog.open(LocationEditDialogComponent, config);
 
@@ -117,5 +114,4 @@ describe('LocationEditDialog', () => {
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
   });
-
 });

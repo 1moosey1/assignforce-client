@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-location-delete-dialog',
   templateUrl: './location-delete-dialog.component.html'
 })
-export class LocationDeleteDialogComponent {
+export class LocationDeleteDialogComponent implements OnInit {
   deleteType: string;
   typeContent;
 

@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Trainer } from '../../model/trainer';
+import { Trainer } from '../../model/Trainer';
 
 @Injectable()
 export class TrainerService {
+  // url from in memory db
+  url = 'api/trainer';
 
-  url = 'api/v2/trainer';
-
-  constructor(private http: HttpClient) { }
-
-  // created an empty Trainer
-  getEmptyTrainer() {
-    // return new Trainer();
-  }
+  constructor(private http: HttpClient) {}
 
   // Gets all trainers in the database
   getAll(): Observable<Trainer[]> {
+    console.log('here');
     return this.http.get<Trainer[]>(`${this.url}`);
   }
 
@@ -24,9 +20,9 @@ export class TrainerService {
     return this.http.get<Trainer>(`${this.url}/${id}`);
   }
 
-  getByFirstNameAndLastName(fName, lName): Observable<Trainer> {
-    return this.http.get<Trainer>(`${this.url}/${fName}/${lName}`);
-  }
+  // getByFirstNameAndLastName(fName, lName): Observable<Trainer> {
+  //   return this.http.get<Trainer>(`${this.url}/${fName}/${lName}`);
+  // }
 
   create(trainer): Observable<any> {
     return this.http.post<any>(`${this.url}`, trainer);

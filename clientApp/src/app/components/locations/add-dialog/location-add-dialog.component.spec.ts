@@ -7,7 +7,7 @@ import { MatDialogModule, MatDialog } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { LocationAddDialogComponent } from './location-add-dialog.component';
-import { AppMaterialModule } from '../../../app-material/app-material.module';
+import { AppMaterialModule } from '../../../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -19,10 +19,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 class NoopComponent {}
 
-const TEST_DIRECTIVES = [
-  LocationAddDialogComponent, 
-  NoopComponent
-];
+const TEST_DIRECTIVES = [LocationAddDialogComponent, NoopComponent];
 
 @NgModule({
   imports: [MatDialogModule, NoopAnimationsModule, FormsModule, AppMaterialModule],
@@ -74,7 +71,7 @@ describe('LocationAddDialog', () => {
     const stateInput = overlayContainerElement.querySelector('#state-input');
     const okButton = overlayContainerElement.querySelector('#ok-button');
     const cancelButton = overlayContainerElement.querySelector('#cancel-button');
-    
+
     expect(h2.textContent).toBe('Add Location');
     expect(nameInput).toBeTruthy();
     expect(cityInput).toBeTruthy();
@@ -126,5 +123,4 @@ describe('LocationAddDialog', () => {
     expect(okButton).toBeTruthy();
     expect(cancelButton).toBeTruthy();
   });
-
 });

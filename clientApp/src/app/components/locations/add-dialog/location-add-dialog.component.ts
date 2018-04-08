@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AppMaterialModule } from '../../../material.module';
+import { Location } from '../../../model/Location';
 
 @Component({
   selector: 'app-location-add-dialog',

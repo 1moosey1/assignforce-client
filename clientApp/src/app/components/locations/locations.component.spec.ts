@@ -4,6 +4,7 @@ import { LocationsComponent } from './locations.component';
 import { AppMaterialModule } from '../../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 
 describe('LocationsComponent', () => {
   let component: LocationsComponent;
@@ -13,6 +14,7 @@ describe('LocationsComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [AppMaterialModule, HttpClientTestingModule, BrowserAnimationsModule],
+        providers: [AddressControllerService],
         declarations: [LocationsComponent]
       }).compileComponents();
     })

@@ -87,7 +87,20 @@ export class LocationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.addLocation(result);
+        const added: Location = {
+          id: null,
+          name: result.name,
+          city: result.city,
+          state: result.state,
+          active: null,
+          buildings: new Array<Building>()
+        };
+
+        // testing
+        console.log(added);
+        this.locations.push(added);
+
+        this.addLocation(added);
 
         this.addressService.getAllLocations().subscribe(resp => {
           this.locations = resp;
@@ -108,7 +121,16 @@ export class LocationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteLocation(result);
+        const deleted: Location = {
+          id: result.id,
+          name: result.name,
+          city: result.city,
+          state: result.state,
+          active: result.active,
+          buildings: result.buildings
+        };
+
+        this.deleteLocation(deleted);
 
         this.addressService.getAllLocations().subscribe(resp => {
           this.locations = resp;
@@ -128,7 +150,16 @@ export class LocationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.updateLocation(result);
+        const edited: Location = {
+          id: result.id,
+          name: result.name,
+          city: result.city,
+          state: result.state,
+          active: result.active,
+          buildings: result.buildings
+        };
+
+        this.updateLocation(edited);
 
         this.addressService.getAllLocations().subscribe(resp => {
           this.locations = resp;
@@ -146,14 +177,26 @@ export class LocationsComponent implements OnInit {
       width: '450px',
       data: {
         addType: 'building',
-        building: building
+        building: building,
+        location: location
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        location.buildings.push(result);
+        const added: Building = {
+          id: result.id,
+          name: result.name,
+          active: null,
+          location: result.location,
+          rooms: new Array<Room>()
+        };
+
+        location.buildings.push(added);
         this.updateLocation(location);
+
+        // testing
+        console.log(added);
 
         this.addressService.getAllLocations().subscribe(resp => {
           this.locations = resp;

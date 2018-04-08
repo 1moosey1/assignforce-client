@@ -25,6 +25,7 @@ export class LocationAddDialogComponent implements OnInit {
       case 'building':
         {
           this.typeContent = this.data.building;
+          this.typeContent.location = this.data.location;
         }
         break;
       case 'room':

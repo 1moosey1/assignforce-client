@@ -1,6 +1,6 @@
 <h2 mat-dialog-title id="title">Delete {{typeContent}}?</h2>
 
 <div mat-dialog-actions>
-  <button mat-button id="ok-button" [mat-dialog-close]="data.deleteType" tabindex="2">Yes</button>
+  <button mat-button id="ok-button" [mat-dialog-close]="typeContent" tabindex="2">Yes</button>
   <button mat-button id="cancel-button" (click)="onNoClick()" tabindex="-1">No</button>
 </div>

@@ -61,6 +61,7 @@ export class LocationsComponent implements OnInit {
   }
   getLocations() {
     this.loading = true;
+    this.locations = new Array<LocationItem>();
     let addressArr = new Array<Address>();
     let buildingArr = new Array<Building>();
     let roomArr = new Array<Room>();
@@ -74,11 +75,15 @@ export class LocationsComponent implements OnInit {
           .toPromise()
           .then(buildings => {
             buildingArr = buildings;
+            console.log('buildingArr: ');
+            console.log(buildingArr);
             this.roomService
               .findAll()
               .toPromise()
               .then(rooms => {
                 roomArr = rooms;
+                console.log('roomsArr: ');
+                console.log(roomArr);
                 for (const address of addressArr) {
                   this.locations.push({
                     address: address,
@@ -88,17 +93,20 @@ export class LocationsComponent implements OnInit {
                 this.locations.forEach(value => {
                   buildingArr
                     .filter(value2 => {
-                      return value2.address === value.address;
+                      return value2.address && value2.address.id === value.address.id;
                     })
                     .forEach(value2 => {
                       value.buildings.push({
                         building: value2,
                         rooms: roomArr.filter(value3 => {
-                          return value3.building === value2;
+                          return value3.building && value3.building.id === value2.id;
                         }) // building filled
                       }); // location filled
                     });
                 });
+                this.loading = false;
+                console.log('this.locations: ');
+                console.log(this.locations);
               })
               .catch(err => {
                 console.log(err);
@@ -111,7 +119,6 @@ export class LocationsComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
-    this.loading = false;
   }
   collapseAll(id: any) {
     this.expanded[id] = !this.expanded[id];
@@ -123,49 +130,105 @@ export class LocationsComponent implements OnInit {
     }
   }
   addLocation(location: Address) {
-    this.addressService.create(location).subscribe(resp => {
-      this.getLocations();
-    });
+    this.addressService
+      .create(location)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   updateLocation(location: Address) {
-    this.addressService.update(location).subscribe(resp => {
-      this.getLocations();
-    });
+    this.addressService
+      .update(location)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   deleteLocation(location: Address) {
-    this.addressService.remove(location.id).subscribe(resp => {
-      this.getLocations();
-    });
+    this.addressService
+      .remove(location.id)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   addBuilding(building: Building) {
-    this.buildingService.create(building).subscribe(resp => {
-      this.getLocations();
-    });
+    console.log(building);
+    this.buildingService
+      .create(building)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   updateBuilding(building: Building) {
-    this.buildingService.update(building).subscribe(resp => {
-      this.getLocations();
-    });
+    this.buildingService
+      .update(building)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   deleteBuilding(building: Building) {
-    this.buildingService.remove(building.id).subscribe(resp => {
-      this.getLocations();
-    });
+    this.buildingService
+      .remove(building.id)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   addRoom(room: Room) {
-    this.roomService.create(room).subscribe(resp => {
-      this.getLocations();
-    });
+    console.log(room);
+    this.roomService
+      .create(room)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   updateRoom(room: Room) {
-    this.roomService.update(room).subscribe(resp => {
-      this.getLocations();
-    });
+    this.roomService
+      .update(room)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   deleteRoom(room: Room) {
-    this.roomService.remove(room.id).subscribe(resp => {
-      this.getLocations();
-    });
+    this.roomService
+      .remove(room.id)
+      .toPromise()
+      .then(resp => {
+        this.getLocations();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   openAddLocationDialog(evt): void {
     evt.stopPropagation();
@@ -189,10 +252,6 @@ export class LocationsComponent implements OnInit {
       .toPromise()
       .then(added => {
         if (added) {
-          // testing
-          console.log(added);
-          // this.locations.push({address: added, buildings: new Array<BuildingItem>()});
-
           this.addLocation(added);
 
           // this.addressService.findAll()
@@ -295,9 +354,6 @@ export class LocationsComponent implements OnInit {
       .then(added => {
         if (added) {
           this.addBuilding(added);
-
-          // testing
-          console.log(added);
 
           // this.addressService.findAll()
           // .toPromise()

@@ -1,6 +1,6 @@
 import { OnInit, Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-// import schemaFaker from 'json-schema-faker';
+import schemaFaker from 'json-schema-faker';
 import faker from 'faker';
 
 import { Address } from '../model/Address';
@@ -41,8 +41,8 @@ export class InMemDbService implements InMemoryDbService, OnInit {
   private unavailability: Unavailability[];
 
   constructor() {
-    this.jsf = require('json-schema-faker');
-    this.jsf.extend('faker', () => faker);
+    // this.jsf.require('json-schema-faker');
+    // this.jsf.extend('faker', () => faker);
   }
 
   async ngOnInit() {

@@ -18,18 +18,10 @@ import { CurriculumSkillsComponent } from './components/curriculum-skills/curric
 import { EditFocusComponent } from './components/edit-focus/edit-focus.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
 import { FociComponent } from './components/foci/foci.component';
-import { LocationAddDialogComponent } from './components/locations/add-dialog/location-add-dialog.component';
-import {
-  LocationAddLocationDialogComponent,
-  LocationAddRoomDialogComponent,
-  LocationDeleteBuildingDialogComponent,
-  LocationDeleteLocationDialogComponent,
-  LocationDeleteRoomDialogComponent,
-  LocationEditBuildingDialogComponent,
-  LocationEditLocationDialogComponent,
-  LocationEditRoomDialogComponent,
-  LocationsComponent
-} from './components/locations/locations.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { LocationsAddDialogComponent } from './components/locations/add-dialog/locations-add-dialog.component';
+import { LocationsEditDialogComponent } from './components/locations/edit-dialog/locations-edit-dialog.component';
+import { LocationsDeleteDialogComponent } from './components/locations/delete-dialog/locations-delete-dialog.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -73,15 +65,10 @@ import { RoomControllerService } from './services/api/room-controller/room-contr
     ProfileComponent,
     ReportsComponent,
     SettingsComponent,
-    LocationAddLocationDialogComponent,
-    LocationDeleteLocationDialogComponent,
-    LocationEditLocationDialogComponent,
-    LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
-    LocationDeleteBuildingDialogComponent,
-    LocationEditBuildingDialogComponent,
-    LocationAddRoomDialogComponent,
-    LocationDeleteRoomDialogComponent,
-    LocationEditRoomDialogComponent,
+    LocationsAddDialogComponent,
+    LocationsEditDialogComponent,
+    LocationsDeleteDialogComponent,
+    LocationsComponent,
     LoginComponent,
     SkillsComponent,
     FociComponent,
@@ -137,15 +124,9 @@ import { RoomControllerService } from './services/api/room-controller/room-contr
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    LocationAddLocationDialogComponent,
-    LocationDeleteLocationDialogComponent,
-    LocationEditLocationDialogComponent,
-    LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
-    LocationDeleteBuildingDialogComponent,
-    LocationEditBuildingDialogComponent,
-    LocationAddRoomDialogComponent,
-    LocationDeleteRoomDialogComponent,
-    LocationEditRoomDialogComponent,
+    LocationsAddDialogComponent,
+    LocationsEditDialogComponent,
+    LocationsDeleteDialogComponent,
     AddFocusComponent,
     EditFocusComponent,
     AddSkillComponent,

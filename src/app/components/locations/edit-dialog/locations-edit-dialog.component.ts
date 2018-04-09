@@ -2,19 +2,21 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-location-add-dialog',
-  templateUrl: './location-add-dialog.component.html'
+  selector: 'app-locations-edit-dialog',
+  templateUrl: './locations-edit-dialog.component.html'
 })
-export class LocationAddDialogComponent implements OnInit {
-  addType: string;
+export class LocationsEditDialogComponent implements OnInit {
+  editType: string;
   typeContent;
-  // dialogContent;
 
-  constructor(public dialogRef: MatDialogRef<LocationAddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(
+    public dialogRef: MatDialogRef<LocationsEditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit() {
-    this.addType = this.data.addType;
-    switch (this.data.addType) {
+    this.editType = this.data.editType;
+    switch (this.data.editType) {
       case 'location':
         {
           this.typeContent = this.data.location;
